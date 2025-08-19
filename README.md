@@ -1,16 +1,15 @@
 # Compiler Projects — Meta Repository
 
-A curated hub of my compilers and tooling work: IR experiments, parsers, optimizers, and runtime explorations. One link for everything.
-
-> 📌 Portfolio link target — share this repo URL in your Projects section.
+A curated hub of my compilers and tooling work: front-ends, IR transformations, optimizations, and back-end experiments.  
+Built through the **UPenn Compilers course** and by recreating a **C-like compiler** from the *Making Compilers* book.
 
 ---
 
 ## Highlights
-- 🧱 **Front‑ends**: lexers/parsers (hand-rolled + generator-based)
-- 🧠 **IR & Opt**: SSA, CSE/DCE, inlining, constant folding, loop opts
-- ⚙️ **Back‑ends**: bytecode + native codegen experiments
-- 🧪 **Tooling**: fuzzers, test harnesses, disassemblers, profilers
+- 🧱 **Front-ends**: lexers/parsers (hand-rolled + generator-based)
+- 🧠 **IR & Optimizations**: SSA, CSE/DCE, inlining, constant folding, loop opts
+- ⚙️ **Back-ends**: bytecode, LLVM IR, WebAssembly
+- 🧪 **Tooling**: test harnesses, debuggers, small runtimes
 
 ---
 
@@ -18,42 +17,33 @@ A curated hub of my compilers and tooling work: IR experiments, parsers, optimiz
 
 | Project | What it is | Key Tech | Repo |
 |---|---|---|---|
-| **ToyLang** | A small teaching compiler from AST → SSA IR → bytecode VM | C++17, ANTLR, SSA, bytecode | https://github.com/yourname/toylang |
-| **MiniC** | C subset compiler with CFG + classic optimizations | LLVM passes, CFG, DCE, CSE | https://github.com/yourname/minic |
-| **XIR** | Standalone IR playground + optimizer suite | Rust, arena allocators, SSA | https://github.com/yourname/xir |
-| **RegAlloc Lab** | Interference graphs & coloring allocators | Rust, graph coloring | https://github.com/yourname/regalloc-lab |
-| **WASM Toy** | High-level → Wasm + simple runtime | Wasm, WAT/wasmtime | https://github.com/yourname/wasm-toy |
-
-> Tip: Keep this table tight—most reviewers scan here first.
+| **x86lite** | Course project: subset of x86 compiler targeting a bytecode VM; covers lexing → parsing → IR → codegen | C++17, hand-rolled parser, SSA, bytecode VM | https://github.com/yourname/x86lite |
+| **llvm-lite** | Course project: C-subset compiler lowering into LLVM IR with classic optimizations | LLVM passes, CFG, SSA, DCE, CSE | https://github.com/yourname/llvm-lite |
+| **Type-Checked Compiler** | Extended compiler with semantic analysis + type checker; supports richer language features | Recursive-descent parsing, type system, IR checks | https://github.com/yourname/type-checked-compiler |
+| **Recreated C** | A C-like compiler built from *Making Compilers*; end-to-end from lexing to executable/runtime | C++/Rust (specify yours), parser, type checker, codegen, simple runtime | https://github.com/yourname/recreated-c |
 
 ---
 
-## Deep Dives
+## 📸 Screenshots & Visuals
 
-### 1) ToyLang
-- **Pipeline**: `lexer → parser → AST → SSA IR → regalloc → bytecode`
-- **Notables**: constant folding, dead code elim, basic inliner  
-- **Docs**: [/docs/toylang.md](./docs/toylang.md) (in that repo)
-
-### 2) MiniC
-- **Pipeline**: `C subset → CFG → LLVM IR → passes`  
-- **Notables**: loop‑invariant code motion, GVN, simple SROA  
-- **Docs**: see the `README` in repo
-
-*(Add similar short sections for each.)*
+### x86lite
+<p align="center">
+  <img src="images/x86lite_ir.png" alt="IR dump example" width="600"/>
+</p>
+*IR dump showing SSA form before and after constant folding.*
 
 ---
 
-## Demos
-- ▶️ Short clips / asciinema links / screenshots if you have them.
+### llvm-lite
+<p align="center">
+  <img src="images/llvm_cfg.png" alt="CFG graph" width="600"/>
+</p>
+*CFG generated from a sample function, used for data-flow optimizations.*
 
 ---
 
-## How to Explore
-- Prefer **per-repo READMEs** for building/running specifics.
-- Typical build pattern:
-  ```bash
-  # example
-  cd toylang && mkdir -p build && cd build
-  cmake .. && make -j
-  ./toylang ../examples/hello.tl
+### Type-Checked Compiler
+<p align="center">
+  <img src="images/type_errors.png" alt="Type checker error reporting" width="600"/>
+</p>
+*Example of semantic/type errors caught during compilation.*
